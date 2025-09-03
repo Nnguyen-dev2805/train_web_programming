@@ -5,6 +5,7 @@ import java.sql.*;
 
 public class UserDAO {
 
+    // function get information for login
     public User getUserByUsername(String username) {
         User user = null;
         try (Connection conn = DBConnection.getConnection()) {
@@ -25,6 +26,7 @@ public class UserDAO {
         return user;
     }
 
+    // function for register
     public boolean insertUser(User user) {
         try (Connection conn = DBConnection.getConnection()) {
             String sql = "INSERT INTO users(username, password, email) VALUES (?, ?, ?)";
@@ -37,6 +39,31 @@ public class UserDAO {
         } catch (Exception e) {
             e.printStackTrace();
             return false;
+        }
+    }
+
+    public boolean isEmailExists(String email) {
+        try (Connection conn = DBConnection.getConnection()) {
+            String sql = "SELECT * FROM users WHERE email=?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, email);
+            ResultSet rs = ps.executeQuery();
+            return rs.next();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public void updatePasswordByEmail(String email, String newPass) {
+        try (Connection conn = DBConnection.getConnection()) {
+            String sql = "UPDATE users SET password=? WHERE email=?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, newPass);
+            ps.setString(2, email);
+            ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

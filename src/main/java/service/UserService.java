@@ -27,4 +27,8 @@ public class UserService {
         boolean inserted = userDAO.insertUser(new User(username, password, email));
         return inserted ? "SUCCESS" : "Failed to register";
     }
+
+    public int getUserIdByUsername(String username) {
+        return userDAO.getUserByUsername(username).getId();
+    }
 }

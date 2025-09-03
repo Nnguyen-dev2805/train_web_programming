@@ -3,11 +3,11 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Đăng nhập</title>
+    <title>Quên mật khẩu</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -15,7 +15,7 @@
             margin: 0;
         }
 
-        .login-container {
+        .forgot-container {
             background: #fff;
             padding: 40px 30px;
             border-radius: 15px;
@@ -25,12 +25,12 @@
             animation: fadeIn 0.8s ease-in-out;
         }
 
-        .login-container h2 {
+        .forgot-container h2 {
             margin-bottom: 20px;
             color: #333;
         }
 
-        .login-container input {
+        .forgot-container input {
             width: 90%;
             padding: 12px;
             margin: 10px 0;
@@ -40,16 +40,16 @@
             transition: 0.3s;
         }
 
-        .login-container input:focus {
-            border-color: #667eea;
-            box-shadow: 0 0 8px rgba(102,126,234,0.4);
+        .forgot-container input:focus {
+            border-color: #ff9a9e;
+            box-shadow: 0 0 8px rgba(255,154,158,0.4);
         }
 
-        .login-container button {
+        .forgot-container button {
             width: 95%;
             padding: 12px;
             margin-top: 15px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
             border: none;
             border-radius: 8px;
             color: #fff;
@@ -58,24 +58,30 @@
             transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
 
-        .login-container button:hover {
+        .forgot-container button:hover {
             transform: translateY(-2px);
-            box-shadow: 0px 6px 15px rgba(102,126,234,0.5);
+            box-shadow: 0px 6px 15px rgba(255,154,158,0.5);
         }
 
-        .login-container p {
+        .forgot-container p {
             margin-top: 10px;
             font-size: 14px;
         }
 
-        .login-container a {
+        .forgot-container a {
             text-decoration: none;
-            color: #667eea;
+            color: #ff7a7a;
             font-weight: bold;
         }
 
         .error {
             color: red;
+            margin-top: 8px;
+            font-size: 14px;
+        }
+
+        .success {
+            color: green;
             margin-top: 8px;
             font-size: 14px;
         }
@@ -87,16 +93,15 @@
     </style>
 </head>
 <body>
-<div class="login-container">
-    <form action="login" method="post">
-        <h2>Đăng nhập</h2>
-        <input type="text" name="username" placeholder="Tên đăng nhập" required /><br>
-        <input type="password" name="password" placeholder="Mật khẩu" required /><br>
-        <button type="submit">Đăng nhập</button>
+<div class="forgot-container">
+    <form action="forgot-password" method="post">
+        <h2>Quên mật khẩu</h2>
+        <input type="email" name="email" placeholder="Nhập email của bạn" required /><br>
+        <button type="submit">Gửi yêu cầu</button>
         <p class="error">${error}</p>
+        <p class="success">${message}</p>
     </form>
-    <p>Bạn chưa có tài khoản? <a href="register.jsp">Đăng ký ngay</a></p>
-    <p><a href="forgot-password.jsp">Quên mật khẩu?</a></p>
+    <p><a href="login.jsp">Quay lại đăng nhập</a></p>
 </div>
 </body>
 </html>

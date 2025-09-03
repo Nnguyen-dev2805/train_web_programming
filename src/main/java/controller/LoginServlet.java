@@ -1,4 +1,4 @@
-package controllers;
+package controller;
 
 import service.UserService;
 import jakarta.servlet.*;
@@ -20,7 +20,12 @@ public class LoginServlet extends HttpServlet {
         String result = userService.login(username, password);
 
         if ("SUCCESS".equals(result)) {
-            request.getSession().setAttribute("username", username);
+            HttpSession session = request.getSession();
+            int userId = userService.getUserIdByUsername(username);
+
+            session.setAttribute("username", username);
+            session.setAttribute("userId", userId);
+
             response.sendRedirect("welcome.jsp");
         } else {
             request.setAttribute("error", result);
