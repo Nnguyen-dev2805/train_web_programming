@@ -1,13 +1,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Đặt lại mật khẩu</title>
+    <title>Register</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #43cea2, #185a9d);
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -15,22 +15,22 @@
             margin: 0;
         }
 
-        .reset-container {
+        .register-container {
             background: #fff;
             padding: 40px 30px;
             border-radius: 15px;
             box-shadow: 0px 10px 25px rgba(0,0,0,0.2);
-            width: 350px;
+            width: 380px;
             text-align: center;
             animation: fadeIn 0.8s ease-in-out;
         }
 
-        .reset-container h2 {
+        .register-container h2 {
             margin-bottom: 20px;
             color: #333;
         }
 
-        .reset-container input {
+        .register-container input {
             width: 90%;
             padding: 12px;
             margin: 10px 0;
@@ -40,16 +40,16 @@
             transition: 0.3s;
         }
 
-        .reset-container input:focus {
-            border-color: #43cea2;
-            box-shadow: 0 0 8px rgba(67,206,162,0.4);
+        .register-container input:focus {
+            border-color: #ff9a9e;
+            box-shadow: 0 0 8px rgba(255,154,158,0.4);
         }
 
-        .reset-container button {
+        .register-container button {
             width: 95%;
             padding: 12px;
             margin-top: 15px;
-            background: linear-gradient(135deg, #43cea2, #185a9d);
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
             border: none;
             border-radius: 8px;
             color: #fff;
@@ -58,30 +58,24 @@
             transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
 
-        .reset-container button:hover {
+        .register-container button:hover {
             transform: translateY(-2px);
-            box-shadow: 0px 6px 15px rgba(67,206,162,0.5);
+            box-shadow: 0px 6px 15px rgba(255,154,158,0.5);
         }
 
-        .reset-container p {
+        .register-container p {
             margin-top: 10px;
             font-size: 14px;
         }
 
-        .reset-container a {
+        .register-container a {
             text-decoration: none;
-            color: #185a9d;
+            color: #ff7a7a;
             font-weight: bold;
         }
 
         .error {
             color: red;
-            margin-top: 8px;
-            font-size: 14px;
-        }
-
-        .success {
-            color: green;
             margin-top: 8px;
             font-size: 14px;
         }
@@ -93,16 +87,16 @@
     </style>
 </head>
 <body>
-<div class="reset-container">
-    <form action="reset-password" method="post">
-        <h2>Đặt lại mật khẩu</h2>
-        <input type="hidden" name="email" value="${email}" />
-        <input type="password" name="newPassword" placeholder="Nhập mật khẩu mới" required /><br>
-        <button type="submit">Xác nhận</button>
+<div class="register-container">
+    <form action="register" method="post">
+        <h2>Register</h2>
+        <input type="text" name="username" placeholder="Username" required /><br>
+        <input type="password" name="password" placeholder="Password" required /><br>
+        <input type="email" name="email" placeholder="Email" required /><br>
+        <button type="submit">Register</button>
         <p class="error">${error}</p>
-        <p class="success">${message}</p>
     </form>
-    <p><a href="login.jsp">Quay lại đăng nhập</a></p>
+    <p>Already have an account? <a href="login">Back to Login</a></p>
 </div>
 </body>
 </html>

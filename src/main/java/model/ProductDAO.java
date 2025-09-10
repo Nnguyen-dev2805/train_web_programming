@@ -1,6 +1,6 @@
 package model;
 
-import util.DBConnection;
+import utils.DBConnection;
 
 import java.sql.*;
 import java.util.ArrayList;

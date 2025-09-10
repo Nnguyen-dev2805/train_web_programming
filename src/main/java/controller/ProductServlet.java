@@ -9,6 +9,7 @@ import service.ProductService;
 import java.io.IOException;
 import java.util.List;
 
+// /admin.categories , /admin/category/edit
 @WebServlet("/products")
 public class ProductServlet extends HttpServlet {
     private ProductService productService;
@@ -31,13 +32,13 @@ public class ProductServlet extends HttpServlet {
 
         switch (action) {
             case "new":
-                request.getRequestDispatcher("products/add.jsp").forward(request, response);
+                request.getRequestDispatcher("views/products/add.jsp").forward(request, response);
                 break;
             case "edit":
                 int id = Integer.parseInt(request.getParameter("id"));
                 Product product = productService.getProductById(id);
                 request.setAttribute("product", product);
-                request.getRequestDispatcher("products/edit.jsp").forward(request, response);
+                request.getRequestDispatcher("views/products/edit.jsp").forward(request, response);
                 break;
             case "delete":
                 id = Integer.parseInt(request.getParameter("id"));
@@ -58,7 +59,7 @@ public class ProductServlet extends HttpServlet {
                     System.out.println("Products = null");
                 }
                 request.setAttribute("products", products);
-                request.getRequestDispatcher("products/list.jsp").forward(request, response);
+                request.getRequestDispatcher("views/products/list.jsp").forward(request, response);
                 break;
         }
     }

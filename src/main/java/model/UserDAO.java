@@ -1,6 +1,6 @@
 package model;
 
-import util.DBConnection;
+import utils.DBConnection;
 import java.sql.*;
 
 public class UserDAO {

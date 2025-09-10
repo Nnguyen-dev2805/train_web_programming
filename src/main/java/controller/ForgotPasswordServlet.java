@@ -1,5 +1,6 @@
 package controller;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
@@ -10,6 +11,13 @@ import java.io.IOException;
 @WebServlet("/forgot-password")
 public class ForgotPasswordServlet extends HttpServlet {
     private UserDAO userDAO;
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        RequestDispatcher rd = request.getRequestDispatcher("views/auth/forgot-password.jsp");
+        rd.forward(request, response);
+    }
 
     @Override
     public void init() {
@@ -24,10 +32,10 @@ public class ForgotPasswordServlet extends HttpServlet {
         if (userDAO.isEmailExists(email)) {
             // Nếu email tồn tại -> chuyển sang trang reset-password.jsp
             request.setAttribute("email", email); // truyền email sang trang reset
-            request.getRequestDispatcher("reset-password.jsp").forward(request, response);
+            request.getRequestDispatcher("views/auth/reset-password.jsp").forward(request, response);
         } else {
             request.setAttribute("error", "Email không tồn tại trong hệ thống!");
-            request.getRequestDispatcher("forgot-password.jsp").forward(request, response);
+            request.getRequestDispatcher("views/auth/forgot-password.jsp").forward(request, response);
         }
     }
 }

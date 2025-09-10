@@ -11,6 +11,13 @@ public class RegisterServlet extends HttpServlet {
     private UserService userService = new UserService();
 
     @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        RequestDispatcher rd = request.getRequestDispatcher("views/auth/register.jsp");
+        rd.forward(request, response);
+    }
+
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
@@ -21,10 +28,10 @@ public class RegisterServlet extends HttpServlet {
         String result = userService.register(username, password, email);
 
         if ("SUCCESS".equals(result)) {
-            response.sendRedirect("login.jsp");
+            response.sendRedirect("login");
         } else {
             request.setAttribute("error", result);
-            RequestDispatcher rd = request.getRequestDispatcher("register.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("views/auth/register.jsp");
             rd.forward(request, response);
         }
     }

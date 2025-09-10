@@ -101,7 +101,7 @@
         <p class="error">${error}</p>
         <p class="success">${message}</p>
     </form>
-    <p><a href="login.jsp">Quay lại đăng nhập</a></p>
+    <p><a href="login">Quay lại đăng nhập</a></p>
 </div>
 </body>
 </html>

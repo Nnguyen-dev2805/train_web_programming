@@ -11,6 +11,13 @@ public class LoginServlet extends HttpServlet {
     private UserService userService = new UserService();
 
     @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        RequestDispatcher rd = request.getRequestDispatcher("views/auth/login.jsp");
+        rd.forward(request, response);
+    }
+
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
@@ -26,10 +33,10 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("username", username);
             session.setAttribute("userId", userId);
 
-            response.sendRedirect("welcome.jsp");
+            response.sendRedirect("home");
         } else {
             request.setAttribute("error", result);
-            RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("views/auth/login.jsp");
             rd.forward(request, response);
         }
     }
