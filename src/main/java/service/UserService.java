@@ -17,18 +17,22 @@ public class UserService {
         return "SUCCESS";
     }
 
-    public String register(String username, String password, String email) {
+    public String register(String fullname, String username, String password, String email) {
         if (userDAO.getUserByUsername(username) != null) {
             return "Username already exists";
         }
         if (!email.contains("@")) {
             return "Invalid email";
         }
-        boolean inserted = userDAO.insertUser(new User(username, password, email));
+        boolean inserted = userDAO.insertUser(new User(fullname,username, password, email));
         return inserted ? "SUCCESS" : "Failed to register";
     }
 
     public int getUserIdByUsername(String username) {
         return userDAO.getUserByUsername(username).getId();
+    }
+
+    public User getUserByUsername(String username) {
+        return userDAO.getUserByUsername(username);
     }
 }

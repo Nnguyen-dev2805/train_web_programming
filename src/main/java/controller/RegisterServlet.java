@@ -21,11 +21,12 @@ public class RegisterServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        String fullname = request.getParameter("fullname");
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         String email = request.getParameter("email");
 
-        String result = userService.register(username, password, email);
+        String result = userService.register(fullname, username, password, email);
 
         if ("SUCCESS".equals(result)) {
             response.sendRedirect("login");

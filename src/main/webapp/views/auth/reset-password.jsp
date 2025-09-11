@@ -1,108 +1,159 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <title>Đặt lại mật khẩu</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #43cea2, #185a9d);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
+<style>
+    body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f5f5f5;
+        margin: 0;
+        padding: 20px 0;
+        min-height: 100vh;
+    }
 
-        .reset-container {
-            background: #fff;
-            padding: 40px 30px;
-            border-radius: 15px;
-            box-shadow: 0px 10px 25px rgba(0,0,0,0.2);
-            width: 350px;
-            text-align: center;
-            animation: fadeIn 0.8s ease-in-out;
-        }
+    .reset-container {
+        max-width: 400px;
+        margin: 50px auto;
+        padding: 30px 40px;
+        box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        border-radius: 8px;
+        background-color: #fff;
+    }
 
-        .reset-container h2 {
-            margin-bottom: 20px;
-            color: #333;
-        }
+    .reset-container h2 {
+        text-align: center;
+        margin-bottom: 25px;
+        color: #2c2c72;
+        font-size: 28px;
+        font-weight: 600;
+    }
 
-        .reset-container input {
-            width: 90%;
-            padding: 12px;
-            margin: 10px 0;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            outline: none;
-            transition: 0.3s;
-        }
+    .form-group {
+        margin-bottom: 20px;
+    }
 
-        .reset-container input:focus {
-            border-color: #43cea2;
-            box-shadow: 0 0 8px rgba(67,206,162,0.4);
-        }
+    .form-group label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 8px;
+        color: #2c2c72;
+    }
 
-        .reset-container button {
-            width: 95%;
-            padding: 12px;
-            margin-top: 15px;
-            background: linear-gradient(135deg, #43cea2, #185a9d);
-            border: none;
-            border-radius: 8px;
-            color: #fff;
-            font-size: 16px;
-            cursor: pointer;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
+    .form-group input {
+        width: 100%;
+        padding: 12px 15px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+        transition: border-color 0.3s;
+        box-sizing: border-box;
+    }
 
-        .reset-container button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0px 6px 15px rgba(67,206,162,0.5);
-        }
+    .form-group input:focus {
+        border-color: #5a4fcf;
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(90, 79, 207, 0.1);
+    }
 
-        .reset-container p {
-            margin-top: 10px;
-            font-size: 14px;
-        }
+    .reset-btn {
+        width: 100%;
+        padding: 12px;
+        background: linear-gradient(90deg, #5a4fcf, #7f73f5);
+        color: white;
+        font-weight: 700;
+        font-size: 18px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background 0.3s;
+        margin-bottom: 15px;
+    }
 
-        .reset-container a {
-            text-decoration: none;
-            color: #185a9d;
-            font-weight: bold;
-        }
+    .reset-btn:hover {
+        background: #3e3ca6;
+    }
 
-        .error {
-            color: red;
-            margin-top: 8px;
-            font-size: 14px;
-        }
+    .login-link {
+        display: block;
+        text-align: center;
+        color: #5a4fcf;
+        font-weight: 600;
+        text-decoration: none;
+        cursor: pointer;
+        transition: color 0.3s;
+        margin-top: 10px;
+    }
 
-        .success {
-            color: green;
-            margin-top: 8px;
-            font-size: 14px;
-        }
+    .login-link:hover {
+        color: #3e3ca6;
+        text-decoration: underline;
+    }
 
-        @keyframes fadeIn {
-            from {opacity: 0; transform: translateY(-20px);}
-            to {opacity: 1; transform: translateY(0);}
-        }
-    </style>
-</head>
-<body>
+    .error {
+        color: #d9534f;
+        background-color: #f8d7da;
+        border: 1px solid #f5c6cb;
+        padding: 10px 15px;
+        border-radius: 4px;
+        margin-bottom: 20px;
+        font-size: 14px;
+        text-align: center;
+    }
+
+    .success {
+        color: #28a745;
+        background-color: #d1e7dd;
+        border: 1px solid #badbcc;
+        padding: 10px 15px;
+        border-radius: 4px;
+        margin-bottom: 20px;
+        font-size: 14px;
+        text-align: center;
+    }
+
+    .description {
+        color: #666;
+        font-size: 14px;
+        text-align: center;
+        margin-bottom: 20px;
+        line-height: 1.4;
+    }
+
+    .back-text {
+        text-align: center;
+        color: #666;
+        font-size: 14px;
+        margin-top: 15px;
+    }
+</style>
+
 <div class="reset-container">
+    <h2>Đặt lại mật khẩu</h2>
+
+    <p class="description">
+        Vui lòng nhập mật khẩu mới cho tài khoản của bạn. Hãy chọn mật khẩu mạnh để bảo vệ tài khoản.
+    </p>
+
+    <c:if test="${not empty error}">
+        <div class="error">${error}</div>
+    </c:if>
+
+    <c:if test="${not empty message}">
+        <div class="success">${message}</div>
+    </c:if>
+
     <form action="reset-password" method="post">
-        <h2>Đặt lại mật khẩu</h2>
         <input type="hidden" name="email" value="${email}" />
-        <input type="password" name="newPassword" placeholder="Nhập mật khẩu mới" required /><br>
-        <button type="submit">Xác nhận</button>
-        <p class="error">${error}</p>
-        <p class="success">${message}</p>
+
+        <div class="form-group">
+            <label for="newPassword">Mật khẩu mới</label>
+            <input type="password" id="newPassword" name="newPassword" placeholder="Nhập mật khẩu mới" required>
+        </div>
+
+        <div class="form-group">
+            <label for="confirmPassword">Xác nhận mật khẩu</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Nhập lại mật khẩu mới" required>
+        </div>
+
+        <button type="submit" class="reset-btn">Cập nhật mật khẩu</button>
     </form>
-    <p><a href="login">Quay lại đăng nhập</a></p>
+
+    <p class="back-text">Hoàn tất đặt lại? <a href="login" class="login-link">Quay lại đăng nhập</a></p>
 </div>
-</body>
-</html>

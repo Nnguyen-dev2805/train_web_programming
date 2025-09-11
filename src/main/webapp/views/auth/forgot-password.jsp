@@ -1,107 +1,152 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <title>Quên mật khẩu</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
+<style>
+    body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f5f5f5;
+        margin: 0;
+        padding: 20px 0;
+        min-height: 100vh;
+    }
 
-        .forgot-container {
-            background: #fff;
-            padding: 40px 30px;
-            border-radius: 15px;
-            box-shadow: 0px 10px 25px rgba(0,0,0,0.2);
-            width: 350px;
-            text-align: center;
-            animation: fadeIn 0.8s ease-in-out;
-        }
+    .forgot-container {
+        max-width: 400px;
+        margin: 50px auto;
+        padding: 30px 40px;
+        box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        border-radius: 8px;
+        background-color: #fff;
+    }
 
-        .forgot-container h2 {
-            margin-bottom: 20px;
-            color: #333;
-        }
+    .forgot-container h2 {
+        text-align: center;
+        margin-bottom: 25px;
+        color: #2c2c72;
+        font-size: 28px;
+        font-weight: 600;
+    }
 
-        .forgot-container input {
-            width: 90%;
-            padding: 12px;
-            margin: 10px 0;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            outline: none;
-            transition: 0.3s;
-        }
+    .form-group {
+        margin-bottom: 20px;
+    }
 
-        .forgot-container input:focus {
-            border-color: #ff9a9e;
-            box-shadow: 0 0 8px rgba(255,154,158,0.4);
-        }
+    .form-group label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 8px;
+        color: #2c2c72;
+    }
 
-        .forgot-container button {
-            width: 95%;
-            padding: 12px;
-            margin-top: 15px;
-            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-            border: none;
-            border-radius: 8px;
-            color: #fff;
-            font-size: 16px;
-            cursor: pointer;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
+    .form-group input {
+        width: 100%;
+        padding: 12px 15px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+        transition: border-color 0.3s;
+        box-sizing: border-box;
+    }
 
-        .forgot-container button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0px 6px 15px rgba(255,154,158,0.5);
-        }
+    .form-group input:focus {
+        border-color: #5a4fcf;
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(90, 79, 207, 0.1);
+    }
 
-        .forgot-container p {
-            margin-top: 10px;
-            font-size: 14px;
-        }
+    .forgot-btn {
+        width: 100%;
+        padding: 12px;
+        background: linear-gradient(90deg, #5a4fcf, #7f73f5);
+        color: white;
+        font-weight: 700;
+        font-size: 18px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background 0.3s;
+        margin-bottom: 15px;
+    }
 
-        .forgot-container a {
-            text-decoration: none;
-            color: #ff7a7a;
-            font-weight: bold;
-        }
+    .forgot-btn:hover {
+        background: #3e3ca6;
+    }
 
-        .error {
-            color: red;
-            margin-top: 8px;
-            font-size: 14px;
-        }
+    .login-link {
+        display: block;
+        text-align: center;
+        color: #5a4fcf;
+        font-weight: 600;
+        text-decoration: none;
+        cursor: pointer;
+        transition: color 0.3s;
+        margin-top: 10px;
+    }
 
-        .success {
-            color: green;
-            margin-top: 8px;
-            font-size: 14px;
-        }
+    .login-link:hover {
+        color: #3e3ca6;
+        text-decoration: underline;
+    }
 
-        @keyframes fadeIn {
-            from {opacity: 0; transform: translateY(-20px);}
-            to {opacity: 1; transform: translateY(0);}
-        }
-    </style>
-</head>
-<body>
+    .error {
+        color: #d9534f;
+        background-color: #f8d7da;
+        border: 1px solid #f5c6cb;
+        padding: 10px 15px;
+        border-radius: 4px;
+        margin-bottom: 20px;
+        font-size: 14px;
+        text-align: center;
+    }
+
+    .success {
+        color: #28a745;
+        background-color: #d1e7dd;
+        border: 1px solid #badbcc;
+        padding: 10px 15px;
+        border-radius: 4px;
+        margin-bottom: 20px;
+        font-size: 14px;
+        text-align: center;
+    }
+
+    .description {
+        color: #666;
+        font-size: 14px;
+        text-align: center;
+        margin-bottom: 20px;
+        line-height: 1.4;
+    }
+
+    .back-text {
+        text-align: center;
+        color: #666;
+        font-size: 14px;
+        margin-top: 15px;
+    }
+</style>
+
 <div class="forgot-container">
+    <h2>Quên mật khẩu</h2>
+
+    <p class="description">
+        Vui lòng nhập địa chỉ email của bạn. Chúng tôi sẽ gửi link đặt lại mật khẩu đến email này.
+    </p>
+
+    <c:if test="${not empty error}">
+        <div class="error">${error}</div>
+    </c:if>
+
+    <c:if test="${not empty message}">
+        <div class="success">${message}</div>
+    </c:if>
+
     <form action="forgot-password" method="post">
-        <h2>Quên mật khẩu</h2>
-        <input type="email" name="email" placeholder="Nhập email của bạn" required /><br>
-        <button type="submit">Gửi yêu cầu</button>
-        <p class="error">${error}</p>
-        <p class="success">${message}</p>
+        <div class="form-group">
+            <label for="email">Địa chỉ email</label>
+            <input type="email" id="email" name="email" placeholder="Nhập địa chỉ email của bạn" required>
+        </div>
+
+        <button type="submit" class="forgot-btn">Gửi yêu cầu</button>
     </form>
-    <p><a href="login">Quay lại đăng nhập</a></p>
+
+    <p class="back-text">Nhớ lại mật khẩu? <a href="login" class="login-link">Quay lại đăng nhập</a></p>
 </div>
-</body>
-</html>

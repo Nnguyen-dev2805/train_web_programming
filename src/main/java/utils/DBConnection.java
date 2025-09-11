@@ -8,7 +8,7 @@ public class DBConnection {
             + "databaseName=Test;"
             + "encrypt=true;trustServerCertificate=true;";
     private static final String USER = "nhatnguyen";
-    private static final String PASSWORD = "nguyen@282005";
+    private static final String PASSWORD = "123456";
 
     public static Connection getConnection() {
         Connection conn = null;

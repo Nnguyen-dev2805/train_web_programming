@@ -32,6 +32,7 @@ public class LoginServlet extends HttpServlet {
 
             session.setAttribute("username", username);
             session.setAttribute("userId", userId);
+            session.setAttribute("user", userService.getUserByUsername(username));
 
             response.sendRedirect("home");
         } else {
